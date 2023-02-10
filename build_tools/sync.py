@@ -61,7 +61,15 @@ def sync_nightly():
 
 
 def main():
-  sync_nightly()
+  args = sys.argv[1:]
+  if not args:
+    command = "nightly"
+  else:
+    command = args[0]
+  if command == "nightly":
+    sync_nightly()
+  else:
+    raise ValueError("Expected command to be 'nightly'")
 
 
 def write_env(iree_compiler_dylib: Path):
